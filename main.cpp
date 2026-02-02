@@ -46,3 +46,15 @@ public:
             SetConsoleTextAttribute(hConsole, 7); 
         }
     }
+    void saveTasks() {
+        ofstream file(filename);
+        if (file.is_open()) {
+            for (const auto& task : tasks) {
+                file << task.id << " " << task.completed << " "
+                     << task.description << endl;
+            }
+            file.close();
+            
+            SetConsoleTextAttribute(hConsole, 11); 
+            cout << "Задачи сохранены в файл: " << filename << endl;
+            SetConsoleTextAttribute(hConsole, 7); 
