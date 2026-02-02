@@ -28,3 +28,21 @@ public:
     ~TaskManager() {
         saveTasks();
     }
+    void loadTasks() {
+        ifstream file(filename);
+        if (file.is_open()) {
+            tasks.clear();
+            Task task;
+            while (file >> task.id >> task.completed) {
+                file.ignore();
+                getline(file, task.description);
+                tasks.push_back(task);
+                if (task.id >= nextId) nextId = task.id + 1;
+            }
+            file.close();
+            
+            SetConsoleTextAttribute(hConsole, 10); 
+            cout << "Задачи загружены из файла: " << filename << endl;
+            SetConsoleTextAttribute(hConsole, 7); 
+        }
+    }
