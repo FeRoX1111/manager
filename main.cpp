@@ -135,3 +135,18 @@ public:
     void displayMenu() {
         SetConsoleTextAttribute(hConsole, 14); 
         cout << "\n=== МЕНЕДЖЕР ЗАДАЧ ===" << endl;
+        cout << "1. Показать все задачи" << endl;
+        cout << "2. Добавить задачу" << endl;
+        cout << "3. Отметить задачу как выполненную" << endl;
+        cout << "4. Удалить задачу" << endl;
+        cout << "5. Сохранить и выйти" << endl;
+        cout << "======================" << endl;
+        SetConsoleTextAttribute(hConsole, 7); 
+        cout << "Выберите действие: ";
+    }
+};
+
+int main() {
+    SetConsoleOutputCP(1251);
+    SetConsoleCP(1251);
+    
