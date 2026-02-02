@@ -97,17 +97,17 @@ public:
             cout << "Задача " << id << " удалена" << endl;
             SetConsoleTextAttribute(hConsole, 7); 
         } else {
-            SetConsoleTextAttribute(hConsole, 12); // Красный
+            SetConsoleTextAttribute(hConsole, 12); 
             cerr << "Задача с ID " << id << " не найдена!" << endl;
-            SetConsoleTextAttribute(hConsole, 7); // Белый
+            SetConsoleTextAttribute(hConsole, 7); 
         }
     }
     void displayTasks() const {
-        system("cls"); // Очистка консоли (Windows API)
+        system("cls"); 
         
-        SetConsoleTextAttribute(hConsole, 11); // Голубой
+        SetConsoleTextAttribute(hConsole, 11); 
         cout << "========== СПИСОК ЗАДАЧ ==========" << endl;
-        SetConsoleTextAttribute(hConsole, 7); // Белый
+        SetConsoleTextAttribute(hConsole, 7); 
         
         if (tasks.empty()) {
             cout << "Список задач пуст" << endl;
@@ -116,9 +116,22 @@ public:
         
         for (const auto& task : tasks) {
             if (task.completed) {
-                SetConsoleTextAttribute(hConsole, 8); // Серый
+                SetConsoleTextAttribute(hConsole, 8); 
                 cout << "[X] ";
             } else {
-                SetConsoleTextAttribute(hConsole, 10); // Зеленый
+                SetConsoleTextAttribute(hConsole, 10); 
                 cout << "[ ] ";
             }
+            cout << "ID: " << task.id << " | ";
+            cout << task.description << endl;
+            
+            SetConsoleTextAttribute(hConsole, 7); 
+        
+        SetConsoleTextAttribute(hConsole, 11); 
+        cout << "==================================" << endl;
+        SetConsoleTextAttribute(hConsole, 7); 
+    }
+    
+    void displayMenu() {
+        SetConsoleTextAttribute(hConsole, 14); 
+        cout << "\n=== МЕНЕДЖЕР ЗАДАЧ ===" << endl;
