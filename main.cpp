@@ -58,3 +58,18 @@ public:
             SetConsoleTextAttribute(hConsole, 11); 
             cout << "Задачи сохранены в файл: " << filename << endl;
             SetConsoleTextAttribute(hConsole, 7); 
+            } else {
+            SetConsoleTextAttribute(hConsole, 12); // Красный
+            cerr << "Ошибка сохранения файла!" << endl;
+            SetConsoleTextAttribute(hConsole, 7); // Белый
+        }
+    }
+    
+    void addTask(const string& description) {
+        tasks.push_back({nextId++, description, false});
+        
+        SetConsoleTextAttribute(hConsole, 10); // Зеленый
+        cout << "Задача добавлена (ID: " << tasks.back().id << ")" << endl;
+        SetConsoleTextAttribute(hConsole, 7); // Белый
+    }
+    
