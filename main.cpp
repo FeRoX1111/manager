@@ -12,3 +12,19 @@ struct Task {
     string description;
     bool completed;
 };
+class TaskManager {
+private:
+    vector<Task> tasks;
+    string filename;
+    int nextId;
+    
+    HANDLE hConsole;
+    
+public:
+    TaskManager(const string& file) : filename(file), nextId(1) {
+        hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+        loadTasks();
+    }
+    ~TaskManager() {
+        saveTasks();
+    }
