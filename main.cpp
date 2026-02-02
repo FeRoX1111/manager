@@ -102,4 +102,23 @@ public:
             SetConsoleTextAttribute(hConsole, 7); // Белый
         }
     }
-    
+    void displayTasks() const {
+        system("cls"); // Очистка консоли (Windows API)
+        
+        SetConsoleTextAttribute(hConsole, 11); // Голубой
+        cout << "========== СПИСОК ЗАДАЧ ==========" << endl;
+        SetConsoleTextAttribute(hConsole, 7); // Белый
+        
+        if (tasks.empty()) {
+            cout << "Список задач пуст" << endl;
+            return;
+        }
+        
+        for (const auto& task : tasks) {
+            if (task.completed) {
+                SetConsoleTextAttribute(hConsole, 8); // Серый
+                cout << "[X] ";
+            } else {
+                SetConsoleTextAttribute(hConsole, 10); // Зеленый
+                cout << "[ ] ";
+            }
