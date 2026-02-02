@@ -59,28 +59,43 @@ public:
             cout << "Задачи сохранены в файл: " << filename << endl;
             SetConsoleTextAttribute(hConsole, 7); 
             } else {
-            SetConsoleTextAttribute(hConsole, 12); // Красный
+            SetConsoleTextAttribute(hConsole, 12);
             cerr << "Ошибка сохранения файла!" << endl;
-            SetConsoleTextAttribute(hConsole, 7); // Белый
+            SetConsoleTextAttribute(hConsole, 7); 
         }
     }
     
     void addTask(const string& description) {
         tasks.push_back({nextId++, description, false});
         
-        SetConsoleTextAttribute(hConsole, 10); // Зеленый
+        SetConsoleTextAttribute(hConsole, 10); 
         cout << "Задача добавлена (ID: " << tasks.back().id << ")" << endl;
-        SetConsoleTextAttribute(hConsole, 7); // Белый
-    }
+        SetConsoleTextAttribute(hConsole, 7); 
     void completeTask(int id) {
         auto it = find_if(tasks.begin(), tasks.end(),
                          [id](const Task& t) { return t.id == id; });
          if (it != tasks.end()) {
             it->completed = true;
             
-            SetConsoleTextAttribute(hConsole, 14); // Желтый
+            SetConsoleTextAttribute(hConsole, 14); 
             cout << "Задача " << id << " отмечена как выполненная" << endl;
-            SetConsoleTextAttribute(hConsole, 7); // Белый
+            SetConsoleTextAttribute(hConsole, 7); 
+        } else {
+            SetConsoleTextAttribute(hConsole, 12); 
+            cerr << "Задача с ID " << id << " не найдена!" << endl;
+            SetConsoleTextAttribute(hConsole, 7); 
+        }
+    }
+    void deleteTask(int id) {
+        auto it = find_if(tasks.begin(), tasks.end(),
+                         [id](const Task& t) { return t.id == id; });
+        
+        if (it != tasks.end()) {
+            tasks.erase(it);
+            
+            SetConsoleTextAttribute(hConsole, 12); 
+            cout << "Задача " << id << " удалена" << endl;
+            SetConsoleTextAttribute(hConsole, 7); 
         } else {
             SetConsoleTextAttribute(hConsole, 12); // Красный
             cerr << "Задача с ID " << id << " не найдена!" << endl;
