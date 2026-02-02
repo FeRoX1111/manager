@@ -186,3 +186,19 @@ int main() {
             case 5:
                 cout << "Сохранение и выход..." << endl;
                 break;
+            default:
+                SetConsoleTextAttribute(hConsole, 12); 
+                cout << "Неверный выбор!" << endl;
+                SetConsoleTextAttribute(hConsole, 7); 
+        }
+        
+        
+        if (choice != 5) {
+            cout << "\nНажмите Enter для продолжения...";
+            cin.get();
+        }
+        
+    } while (choice != 5);
+    
+    return 0;
+}
