@@ -72,4 +72,19 @@ public:
         cout << "Задача добавлена (ID: " << tasks.back().id << ")" << endl;
         SetConsoleTextAttribute(hConsole, 7); // Белый
     }
+    void completeTask(int id) {
+        auto it = find_if(tasks.begin(), tasks.end(),
+                         [id](const Task& t) { return t.id == id; });
+         if (it != tasks.end()) {
+            it->completed = true;
+            
+            SetConsoleTextAttribute(hConsole, 14); // Желтый
+            cout << "Задача " << id << " отмечена как выполненная" << endl;
+            SetConsoleTextAttribute(hConsole, 7); // Белый
+        } else {
+            SetConsoleTextAttribute(hConsole, 12); // Красный
+            cerr << "Задача с ID " << id << " не найдена!" << endl;
+            SetConsoleTextAttribute(hConsole, 7); // Белый
+        }
+    }
     
