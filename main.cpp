@@ -171,4 +171,18 @@ int main() {
                 getline(cin, input);
                 manager.addTask(input);
                 break;
+                case 3:
+                cout << "Введите ID задачи для отметки: ";
+                cin >> taskId;
+                manager.completeTask(taskId);
+                break;
                 
+            case 4:
+                cout << "Введите ID задачи для удаления: ";
+                cin >> taskId;
+                manager.deleteTask(taskId);
+                break;
+                
+            case 5:
+                cout << "Сохранение и выход..." << endl;
+                break;
