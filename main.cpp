@@ -149,4 +149,26 @@ public:
 int main() {
     SetConsoleOutputCP(1251);
     SetConsoleCP(1251);
+    SetConsoleTitle("Менеджер задач");
     
+    TaskManager manager("tasks.txt");
+    int choice;
+    string input;
+    int taskId;
+    
+    do {
+        manager.displayMenu();
+        cin >> choice;
+        cin.ignore();
+        
+        switch (choice) {
+            case 1:
+                manager.displayTasks();
+                break;
+                
+            case 2:
+                cout << "Введите описание задачи: ";
+                getline(cin, input);
+                manager.addTask(input);
+                break;
+                
